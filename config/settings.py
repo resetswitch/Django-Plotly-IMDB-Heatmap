@@ -28,9 +28,9 @@ SECRET_KEY = get_random_string(50, chars)
 # SECRET_KEY = '82r0hqh=9htw85v_5qh^5a&$y115c972_=o*e7ucmzn0^4*16s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
