@@ -1,4 +1,3 @@
-#https://github.com/ricleal/DjangoPlotLy/blob/master/site1/app1/views.py
 import logging
 from django.views.generic import TemplateView
 from . import plots

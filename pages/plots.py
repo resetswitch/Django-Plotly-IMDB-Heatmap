@@ -16,31 +16,6 @@ import plotly.io as pio
 logger = logging.getLogger(__name__)
 
 
-# def plot1d():
-#     x_data = np.arange(0, 120, 0.1)
-#     trace1 = go.Scatter(
-#         x=x_data,
-#         y=np.sin(x_data)
-#     )
-
-#     data = [trace1]
-#     layout = go.Layout(
-#         # autosize=False,
-#         # width=900,
-#         # height=500,
-
-#         xaxis=dict(
-#             autorange=True
-#         ),
-#         yaxis=dict(
-#             autorange=True
-#         )
-#     )
-#     fig = go.Figure(data=data, layout=layout)
-#     plot_div = plot(fig, output_type='div', include_plotlyjs=False)
-#     logger.info("Plotting number of points {}.".format(len(x_data)))
-#     return plot_div
-
 def heatmap():
     """
     Data is taken from the .csv and converted into a heatmap
