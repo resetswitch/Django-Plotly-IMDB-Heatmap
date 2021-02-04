@@ -63,3 +63,4 @@ $ pipenv shell
 (Django-Plotly-IMDB-Heatmap) $ python manage.py runserver
 ```
 Then click on the link: <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>
+</h6>
