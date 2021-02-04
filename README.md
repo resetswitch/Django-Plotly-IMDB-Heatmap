@@ -51,8 +51,8 @@ $ cd Django-Plotly-IMDB-Heatmap
 $ pipenv install -r requirements.txt
 ```
 </h6>
-<h2>Run it<h2>
 
+<h2>Run it<h2>
 <h6>
 
 ```bash
