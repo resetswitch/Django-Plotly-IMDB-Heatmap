@@ -1,17 +1,26 @@
+# How to return to Django format
+# - step 1: Uncomment out `def heatmap():`
+# - step 2: Delete IMDB_URL
+# - step 3: change back the import
+# - step 4: uncomment out the return statement
+# - step 5: delete this comment section
+
 import datetime
 import glob
 import logging
 import os
+import re
+import textwrap
 
 import numpy as np
+import pandas as pd
+
+import plotly.figure_factory as ff
+import plotly.io as pio
 import plotly.graph_objs as go
 from plotly.offline import plot
 
-import pandas as pd
-import re
-import textwrap
-import plotly.figure_factory as ff
-import plotly.io as pio
+from . import scrapper as scrap
 
 logger = logging.getLogger(__name__)
 
@@ -27,14 +36,28 @@ def heatmap():
     """      
 
     # Reading the .csv in to a Dataframe
-    current_dir = os.path.dirname(os.path.realpath(__file__))
-    filename = '/data/The Office (2005-2013) - IMDB.csv'
-    path_and_filename = current_dir + filename
-    df = pd.read_csv(path_and_filename)
+    scrap_type = "csv"
 
-    # Finding the name of the Chart by the name of the filename
-    basename = os.path.basename(path_and_filename)
-    chart_title = os.path.splitext(basename)[0]  
+    if scrap_type == "url":
+        IMDB_URL = "https://www.imdb.com/title/tt4955642/episodes?season=4"
+        df, chart_title = scrap.imdbScrapper(IMDB_URL) 
+        df['ET'] = df['ET'].astype(int)
+        df['SX'] = df['SX'].astype(int)
+        df['EX'] = df['EX'].astype(int)
+        df['Rating'] = df['Rating'].astype(float)
+        df['Votes'] = df['Votes'].str.replace(',','').astype(int)
+    elif scrap_type == "csv":
+        current_dir = os.path.dirname(os.path.realpath(__file__))
+        filename = '/data/The Office (2005-2013) - IMDB.csv'
+        path_and_filename = current_dir + filename
+        df = pd.read_csv(path_and_filename)
+
+        # Finding the name of the Chart by the name of the filename
+        basename = os.path.basename(path_and_filename)
+        chart_title = os.path.splitext(basename)[0]
+    else:
+        sys.exit('not a valid scrap_type')
+
 
     # Finding the top and bottom N episodes
     N = 3
