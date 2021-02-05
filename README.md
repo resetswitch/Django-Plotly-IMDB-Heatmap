@@ -5,6 +5,8 @@
 
 Link: <a href="https://django-plotly-imdb-heatmap.herokuapp.com/">https://django-plotly-imdb-heatmap.herokuapp.com/</a>
 
+WARNING: May take up to 30 seconds to load!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
+
 Demonstration .gif:
 
 <img src="Images/TheOfficePlotly.gif" width=500>
@@ -13,7 +15,7 @@ Demonstration .gif:
 
 <h2>About</h2>
 
-<h4>Current</h4>
+<h4>Current (branch: master)</h4>
 <h6>
 
 The current version displays an IMDB Plotly heatmap of a single pre-chosen TV show where the data has already been scrapped from IMDB website on .csv files. Plotly is a free and awesome tool for interactive data visualization. In the heatmap provided you can hover your mouse over cells to see more specific episodal information.
@@ -33,7 +35,7 @@ Current Selection of TV Shows:
 - <strong>`The Office`</strong> `(2005-2013) - IMDB.csv`
 </h6>
 
-<h4>Future Plans</h4>
+<h4>Future Plans (branch: input-feature)</h4>
 <h6>
 
 Copy-Paste any of your favorite IMDB TV show URLs and plug them into this website to display a Plotly episodal heatmap.
