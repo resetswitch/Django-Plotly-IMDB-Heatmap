@@ -3,7 +3,7 @@
 <h2>Website Demo</h2>
 <h6>
 
-Link: to be added shortly...
+Link: <a href="https://django-plotly-imdb-heatmap.herokuapp.com/">https://django-plotly-imdb-heatmap.herokuapp.com/</a>
 
 Demonstration .gif:
 
