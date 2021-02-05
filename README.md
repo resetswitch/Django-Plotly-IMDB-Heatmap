@@ -31,8 +31,8 @@ Current Selection of TV Shows:
 - <strong>`Family Guy`</strong> `(1999- ) - IMDB.csv`
 - <strong>`SpongeBob SquarePants`</strong> `(1999- ) - IMDB.csv`
 - <strong>`The Office`</strong> `(2005-2013) - IMDB.csv`
-
 </h6>
+
 <h4>Future Plans</h4>
 <h6>
 
@@ -52,7 +52,7 @@ $ pipenv install -r requirements.txt
 ```
 </h6>
 
-<h2>Run it<h2>
+<h2>Run it</h2>
 <h6>
 
 ```bash
