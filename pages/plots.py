@@ -25,7 +25,7 @@ from . import scrapper as scrap
 logger = logging.getLogger(__name__)
 
 
-def heatmap():
+def heatmap(IMDB_URL = None):
     """
     Data is taken from the .csv and converted into a heatmap
 
@@ -36,17 +36,15 @@ def heatmap():
     """      
 
     # Reading the .csv in to a Dataframe
-    scrap_type = "csv"
-
-    if scrap_type == "url":
-        IMDB_URL = "https://www.imdb.com/title/tt4955642/episodes?season=4"
+    print('WE ARE IN THE PLOT.PY FILE with {}'.format(IMDB_URL))
+    if IMDB_URL != None:
         df, chart_title = scrap.imdbScrapper(IMDB_URL) 
         df['ET'] = df['ET'].astype(int)
         df['SX'] = df['SX'].astype(int)
         df['EX'] = df['EX'].astype(int)
         df['Rating'] = df['Rating'].astype(float)
         df['Votes'] = df['Votes'].str.replace(',','').astype(int)
-    elif scrap_type == "csv":
+    elif IMDB_URL == None:
         current_dir = os.path.dirname(os.path.realpath(__file__))
         filename = '/data/The Office (2005-2013) - IMDB.csv'
         path_and_filename = current_dir + filename
