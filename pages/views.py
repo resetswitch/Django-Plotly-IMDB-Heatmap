@@ -1,6 +1,9 @@
 import logging
 from django.views.generic import TemplateView
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
+from .forms import NameForm
 from . import plots
 
 logger = logging.getLogger(__name__)
@@ -8,10 +11,36 @@ logger = logging.getLogger(__name__)
 
 
 class HeatmapView(TemplateView):
-    template_name = "plot.html"
+    template_name = "base.html"
+
+    def __init__(self):
+        super().__init__()
+        self.data = None
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(HeatmapView, self).get_context_data(**kwargs)
+        print('self.data (get_context_data):\n{}\n\n'.format(self.data))
+        context['form'] = NameForm()
         context['plot'] = plots.heatmap()
         return context
+
+    def post(self,request, *args, **kwargs):
+        print('self.data (post) before assingment:\n{}\n\n'.format(self.data))
+        form = NameForm(request.POST)
+        self.data = form.data.get("forms_url")
+        # context = self.get_context_data()
+        print('self.data (post) after assingment:\n{}\n\n'.format(self.data))
+        return HttpResponseRedirect('/')
+        # return render(request, 'base.html', {'form': form})
+
+
+
+# class HeatmapView(TemplateView):
+#     template_name = "plot.html"
+
+#     def get_context_data(self, **kwargs):
+#         # Call the base implementation first to get a context
+#         context = super(HeatmapView, self).get_context_data(**kwargs)
+#         context['plot'] = plots.heatmap()
+#         return context

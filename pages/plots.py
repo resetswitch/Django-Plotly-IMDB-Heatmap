@@ -67,8 +67,8 @@ def heatmap():
     bot_N_ratings = bot_N['Rating'].values
     top_N_rating_statements = EpisodeStatement(top_N)
     bot_N_rating_statements = EpisodeStatement(bot_N)
-    print("Best Episodes\n" +"\n".join(top_N_rating_statements))
-    print("Worst Episodes\n"+"\n".join(bot_N_rating_statements))
+    # print("Best Episodes\n" +"\n".join(top_N_rating_statements))
+    # print("Worst Episodes\n"+"\n".join(bot_N_rating_statements))
 
     # Defining constants
     pad_rating = 0                  #value with which to pad the lists
