@@ -4,11 +4,23 @@
     <head> 
         <meta charset="utf-8">
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <link 
+        {% comment %} <link 
         rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
-        crossorigin="anonymous">
+        crossorigin="anonymous"> {% endcomment %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script> 
+            function displayAlert() {
+                var T = document.getElementById("alert-notifications");
+                T.style.display = "block"; 
+                }
+        </script>
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
@@ -19,12 +31,23 @@
                 </form> {% endcomment %}
                 <form action="" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
                     {{ form }}
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="displayAlert()">Search</button>
                 </form>
         </nav>
-        <main> 
+        <main>
             <div class="container">
-            <div style="border: 1px solid black">>{{plot|safe}}</div>
+                <div id="alert-notifications" style="display:none">
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <strong>Submitted!</strong>
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {% comment %} https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-alerts.php {% endcomment %}
+                        <strong>Warning!</strong> Note: Please allow 20 sec per season of a TV show. (Example: Dark (2017) has 3-seasons. Takes about 60 sec.)
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                </div>
+                <div style="border: 1px solid black">>{{plot|safe}}</div>
             {% comment %} {% block content %}
             {% endblock %} {% endcomment %}
             </div>
