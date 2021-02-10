@@ -26,36 +26,24 @@ class HeatmapView(TemplateView):
         context = super(HeatmapView, self).get_context_data(**kwargs)
         print('cache:\n{}\n\n'.format(cache.get('data')))
         imdb_url = cache.get('data')
+        result = plots.heatmap(imdb_url)
+        context['Error_Bool'] = cache.get('Error')
         context['form'] = NameForm()
-        context['plot'] = plots.heatmap(imdb_url)
+        context['plot'] = result.Plot
         return context
 
     def post(self,request, *args, **kwargs):
         form = NameForm(request.POST)
-        url_data = form.data.get("forms_url")
-        print(url_data)
-        if form.is_valid() and bool('imdb.com/title/tt' in url_data):
-            cache.set('data', url_data,3000)
+        url_link = form.data.get("forms_url")
+        print(url_link)
+        if form.is_valid() and url_link.find("https://www.imdb.com/title/tt") == 0:
+            cache.set('data', url_link,3000)
+            cache.set('Error', False, 3000)
             return HttpResponseRedirect('/')
         else:
             form = NameForm()
             cache.set('data', None,3000)
+            cache.set('Error', True, 3000)
             # return render(request, 'base.html', {'form': form})
             return HttpResponseRedirect('/')
 
-
-    def validate_url(self, value):
-        obj = urlparse(value)
-        if not obj.hostname in ('imdb.com/title/tt'):
-            raise ValidationError('Only urls from YouTube or SoundCloud allowed')
-        else:
-            return True
-
-# class HeatmapView(TemplateView):
-#     template_name = "plot.html"
-
-#     def get_context_data(self, **kwargs):
-#         # Call the base implementation first to get a context
-#         context = super(HeatmapView, self).get_context_data(**kwargs)
-#         context['plot'] = plots.heatmap()
-#         return context

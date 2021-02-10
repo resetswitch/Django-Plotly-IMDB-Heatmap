@@ -38,7 +38,9 @@ def heatmap(IMDB_URL = None):
     # Reading the .csv in to a Dataframe
     print('WE ARE IN THE PLOT.PY FILE with {}'.format(IMDB_URL))
     if IMDB_URL != None:
-        df, chart_title = scrap.imdbScrapper(IMDB_URL) 
+        result = scrap.imdbScrapper(IMDB_URL) 
+        df = result.DataFrame
+        chart_title = result.DataFrame_title
         df['ET'] = df['ET'].astype(int)
         df['SX'] = df['SX'].astype(int)
         df['EX'] = df['EX'].astype(int)
@@ -151,8 +153,8 @@ def heatmap(IMDB_URL = None):
                         font=dict(family="Arial",size=8, color="Black"))
 
     fig.update_layout(title={"text": "<span style='font-size: 25px;'>{}</span><br>IMDB TV Show Episode Ratings Heatmap".format(chart_title.replace("_"," ").replace("-", "-")).replace(' - IMDB',''),'y': .90},font=dict(family="Arial",size=8, color="Black"))
-    plot_div = plot(fig, output_type='div', include_plotlyjs=False)
-    return plot_div
+    result.Plot = plot(fig, output_type='div', include_plotlyjs=False)
+    return result
 
 
 def EpisodeStatement(df):

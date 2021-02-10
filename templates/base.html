@@ -36,11 +36,18 @@
         </nav>
         <main>
             <div class="container">
-                <div id="alert-notifications" style="display:none">
-                    <div class="alert alert-success alert-dismissible fade show">
-                        <strong>Submitted!</strong>
+                {% if Error_Bool %}
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <strong>Error</strong>: Please enter a valid IMDB TV show link (example: https://www.imdb.com/title/tt5753856/?ref_=nv_sr_srsg_3)
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                     </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <strong>Success!</strong>
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %}
+                <div id="alert-notifications" style="display:none">
                     <div class="alert alert-warning alert-dismissible fade show">
                         {% comment %} https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-alerts.php {% endcomment %}
                         <strong>Warning!</strong> Note: Please allow 20 sec per season of a TV show. (Example: Dark (2017) has 3-seasons. Takes about 60 sec.)
