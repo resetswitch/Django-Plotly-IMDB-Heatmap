@@ -19,11 +19,9 @@ import plotly.figure_factory as ff
 import plotly.io as pio
 import plotly.graph_objs as go
 from plotly.offline import plot
-
 from . import scrapper as scrap
 
 logger = logging.getLogger(__name__)
-
 
 def heatmap(IMDB_URL = None):
     """
@@ -36,6 +34,7 @@ def heatmap(IMDB_URL = None):
     """      
 
     # Reading the .csv in to a Dataframe
+    result = scrap.Data()
     print('WE ARE IN THE PLOT.PY FILE with {}'.format(IMDB_URL))
     if IMDB_URL != None:
         result = scrap.imdbScrapper(IMDB_URL) 
