@@ -11,17 +11,8 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 
+from . import classes as c
 
-    
-
-
-class Data():
-    def __init__(self):
-        self.DataFrame = None
-        self.DataFrame_title = None
-        self.error = None
-        self.error_message = None
-        self.Plot = None
 
 def requestContent(URL):
     try:
@@ -33,8 +24,8 @@ def requestContent(URL):
 
 
 def imdbScrapper(IMDB_URL):
+    result = c.Data()
     try:
-        result = Data()
         # In the event of IMDB giving a 400 code when scrapping 'byseasons', we can scrap 'byyear' instead.
         slash_list = []
         title_tt = re.findall('tt\d{7}', IMDB_URL)[0]
@@ -164,6 +155,11 @@ def imdbScrapper(IMDB_URL):
                                 air_date[i],
                                 description[i]
                                 ])
+        # If data is emtpy
+        if not data:
+            result.error = True
+            result.error_message = "{} does not have full season ratings".format(show_title)
+            return result
 
         # Creating and saving Dataframe 
         df = pd.DataFrame(data,columns=['ET','SX', 'EX','Episode Title','Rating', 'Votes', 'Air Date','Description'])

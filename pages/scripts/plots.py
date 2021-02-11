@@ -20,7 +20,7 @@ import plotly.io as pio
 import plotly.graph_objs as go
 from plotly.offline import plot
 from . import scrapper as scrap
-
+from . import classes as c
 logger = logging.getLogger(__name__)
 
 def heatmap(IMDB_URL = None):
@@ -34,28 +34,30 @@ def heatmap(IMDB_URL = None):
     """      
 
     # Reading the .csv in to a Dataframe
-    result = scrap.Data()
+    result = c.Data()
     print('WE ARE IN THE PLOT.PY FILE with {}'.format(IMDB_URL))
     if IMDB_URL != None:
-        result = scrap.imdbScrapper(IMDB_URL) 
-        df = result.DataFrame
-        chart_title = result.DataFrame_title
-        df['ET'] = df['ET'].astype(int)
-        df['SX'] = df['SX'].astype(int)
-        df['EX'] = df['EX'].astype(int)
-        df['Rating'] = df['Rating'].astype(float)
-        df['Votes'] = df['Votes'].str.replace(',','').astype(int)
-    elif IMDB_URL == None:
-        current_dir = os.path.dirname(os.path.realpath(__file__))
-        filename = '/data/The Office (2005-2013) - IMDB.csv'
-        path_and_filename = current_dir + filename
+        result = scrap.imdbScrapper(IMDB_URL)
+        if result.error == True:
+            pass
+        else:
+            df = result.DataFrame
+            chart_title = result.DataFrame_title
+            df['ET'] = df['ET'].astype(int)
+            df['SX'] = df['SX'].astype(int)
+            df['EX'] = df['EX'].astype(int)
+            df['Rating'] = df['Rating'].astype(float)
+            df['Votes'] = df['Votes'].str.replace(',','').astype(int)
+
+    if IMDB_URL == None or result.error == True:
+        file_dir = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'data'))
+        filename = '/The Office (2005-2013) - IMDB.csv'
+        path_and_filename = file_dir + filename
         df = pd.read_csv(path_and_filename)
 
         # Finding the name of the Chart by the name of the filename
         basename = os.path.basename(path_and_filename)
         chart_title = os.path.splitext(basename)[0]
-    else:
-        sys.exit('not a valid scrap_type')
 
 
     # Finding the top and bottom N episodes
@@ -89,7 +91,7 @@ def heatmap(IMDB_URL = None):
     rect_data_airdate       = pd.DataFrame(columns=["Ep."+str(i) for i in range(1,d+1)])
     rect_data_description   = pd.DataFrame(columns=["Ep."+str(i) for i in range(1,d+1)])
 
-    # Separating the Data Seasonaly and Rectangularizing (padding) with Zero's and Empty strings for Labels
+    # Separating the Data Seasonally and Rectangularizing (padding) with Zero's and Empty strings for Labels
     for i in range(1, seasons_max+1):
         seasons_ratings = df[df['SX'].isin([i])]['Rating'].values.tolist()
         rating_label    = seasons_ratings.copy()
@@ -142,7 +144,7 @@ def heatmap(IMDB_URL = None):
                                         showscale = True, zmax=10, zmin=df['Rating'].min()-.1, colorbar = dict(thickness=25, ypad = 0),
                                         font_colors=['rgb(0, 0, 0)','rgb(0, 0, 2)'])
 
-    fig.add_annotation  (dict(font=dict(color="black",size=8),x=.1,y=-.2,align = "left",showarrow=False,
+    fig.add_annotation(dict(font=dict(color="black",size=8),x=.1,y=-.2,align = "left",showarrow=False,
                         text="<b>Worst Episodes</b><br>"+"<br>".join(bot_N_rating_statements),textangle=0,xref="paper",yref="paper"))
 
     fig.add_annotation(dict(font=dict(color="black",size=8),x=.9,y=-.2,align = "left",showarrow=False,
