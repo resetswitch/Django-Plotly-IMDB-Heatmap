@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     # /pages
-    path('', views.HeatmapView.as_view(), name='heatmap'),
+    path('', views.HeatmapView.as_view(), name='plot'),
 ]
