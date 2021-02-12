@@ -43,7 +43,7 @@ class HeatmapView(TemplateView):
         form = NameForm(request.POST)
         url_link = form.data.get("forms_url")
         print(url_link)
-        if form.is_valid() and url_link.find("https://www.imdb.com/title/tt") == 0:
+        if form.is_valid() and (url_link.find("https://www.imdb.com/title/tt") == 0 or url_link.find("imdb.com/title/tt") == 0 or url_link.find("https://m.imdb.com/title/tt") == 0 or url_link.find("m.imdb.com/title/tt") == 0):
             cache.set('imdb_url', url_link,3000)
             cache.set('Error', False, 3000)
             return HttpResponseRedirect('/')
