@@ -5,49 +5,33 @@
 
 Link: <a href="https://django-plotly-imdb-heatmap.herokuapp.com/">https://django-plotly-imdb-heatmap.herokuapp.com/</a>
 
-<<<<<<< HEAD
-WARNING: May take up to 30 seconds to load!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
-=======
 WARNING 1: May take up to 90 seconds to load!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
 
-WARNING 2: Not optimized for mobile devices!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
->>>>>>> input-feature
+WARNING 2: Not optimized for mobile devices! For a better experience, a desktop is recommended.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 
 Demonstration .gif:
 
-<img src="Images/TheOfficePlotly.gif" width=500>
+<img src="Images/ActiveWebsiteDemo.gif" width=500>
 
 </h6>
 
 <h2>About</h2>
-
-<h4>Current (branch: master)</h4>
 <h6>
 
-The current version displays an IMDB Plotly heatmap of a single pre-chosen TV show where the data has already been scrapped from IMDB website on .csv files. Plotly is a free and awesome tool for interactive data visualization. In the heatmap provided you can hover your mouse over cells to see more specific episodal information.
-
-To change the TV Show displayed, go to `pages/views.py` and change the `filename` assignment to any file in the `pages/data/` folder
-
-```python
-    ...
-    filename = '/data/Dark (2017-2020) - IMDB.csv'
-    ...
-```
-
-Current Selection of TV Shows:
-- <strong>`Dark`</strong> `(2017-2020) - IMDB.csv`
-- <strong>`Family Guy`</strong> `(1999- ) - IMDB.csv`
-- <strong>`SpongeBob SquarePants`</strong> `(1999- ) - IMDB.csv`
-- <strong>`The Office`</strong> `(2005-2013) - IMDB.csv`
+Copy-Paste any of your favorite IMDB TV show URLs and plug them into this website to display a Plotly episodal heatmap. Each cell is colored according to an IMDB TV episode rating on a scale of 1-10 (bad to good or red to green). Plotly is a free and awesome tool for interactive data visualization. In the heatmap provided, you can hover your mouse over cells to see more specific episodal information.
 </h6>
-
-<h4>Future Plans (branch: input-feature)</h4>
+<h2>Features</h2>
 <h6>
 
-Copy-Paste any of your favorite IMDB TV show URLs and plug them into this website to display a Plotly episodal heatmap.
+- Interactive plot
+- Scrapping Data from IMDB website with `BeautifulSoup`
+- Navigation bar with built in loading brand
+- Bootstrap styling
+- Input handling
+- Notifications
 </h6>
 
-<h2>Installation</h2>
+<h2>Installation and Running</h2>
 <h6>
 
 Requirements are in the `requirements.txt` file.
@@ -58,10 +42,9 @@ Use `pipenv`:
 $ cd Django-Plotly-IMDB-Heatmap
 $ pipenv install -r requirements.txt
 ```
-</h6>
 
-<h2>Run it</h2>
-<h6>
+
+Run it
 
 ```bash
 $ cd Django-Plotly-IMDB-Heatmap
