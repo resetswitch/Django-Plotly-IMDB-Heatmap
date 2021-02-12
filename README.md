@@ -5,9 +5,11 @@
 
 Link: <a href="https://django-plotly-imdb-heatmap.herokuapp.com/">https://django-plotly-imdb-heatmap.herokuapp.com/</a>
 
-WARNING 1: May take up to 90 seconds to load!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
+WARNING 1: May take up to 90 seconds to intially load the website!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
 
-WARNING 2: Not optimized for mobile devices! For a better experience, a desktop is recommended.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+WARNING 2: Only 1 person is allowed to visit the site at a time!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a limitation due to Heroku's free tier)
+
+WARNING 3: Not optimized for mobile devices!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (For a better experience, as per .gif below, a desktop is recommended)
 
 Demonstration .gif:
 
