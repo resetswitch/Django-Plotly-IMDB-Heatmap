@@ -12,14 +12,23 @@
         <script> 
             function displayAlert() {
                 var T = document.getElementById("alert-notifications");
+                var nav_brand_gif = document.getElementById("forms_url");
+                var nav_brand_png = document.getElementById("navbarstatic");
                 T.style.display = "block"; 
+                nav_brand_gif.style.display = "block"; 
+                nav_brand_png.style.display = "none"; 
                 }
         </script>
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-                <a class="navbar-brand" href="{% url 'plot' %}">IMDb TV Heatmap</a> 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div id="forms_url" style="display:none">
+                    <a class="navbar-brand" href="{% url 'plot' %}"><img src="{% static 'pages/brand-loading.gif' %}" width="72" height="40" alt=""></a> 
+                </div>
+                <div id="navbarstatic" style="display:block">
+                    <a class="navbar-brand" href="{% url 'plot' %}"><img src="{% static 'pages/brand.png' %}" width="72" height="40" alt=""></a> 
+                </div>
                 <form action="" method="post" class="form-inline my-2 my-lg-0">{% csrf_token %}
                     {{ form }}
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="displayAlert()">Search</button>
